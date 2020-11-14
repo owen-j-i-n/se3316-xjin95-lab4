@@ -1,0 +1,34 @@
+
+
+<h3 style="color: blue;">My Schedules:</h3> <span>click schedule to know more</span>
+    
+
+    <ul class="schedules">
+        <li *ngFor="let schedule of schedules" [class.selected]="schedule === selectedSchedule" (click)="onSelect(schedule)">
+        {{schedule.name}}<button  (click)="deleteSchedule(schedule.name)">DELETE</button>
+        </li>
+    </ul>
+    <form (submit) = "addSchedule()">
+        <input type="text" [(ngModel)]="txtName" name = "Name" placeholder="New Schedule Name">  <button type="submit">add schedule</button>
+    </form>
+<br>
+    
+
+    <div *ngIf="selectedSchedule">
+    
+        <h2>{{selectedSchedule.name | uppercase}} Courses</h2>
+        <div>
+            <li *ngFor = "let courses of selectedSchedule.courses | slice:1">
+                 {{courses.subject}} {{courses.catalog_nbr}} 
+                 <button  (click)="deleteCourse(courses.catalog_nbr,courses.subject)">DELETE</button>
+            </li>
+        
+        </div>
+    
+        <form>
+            <input #subject type="text" name = "subject" placeholder="Subject"> 
+            <input #catalog_nbr type="text"  name = "catalog_nbr" placeholder="Course Code">
+            <button id = 'addCourse' (click)="addCourse(subject.value, catalog_nbr.value)">add Course</button>
+        </form>
+    
+    </div>
