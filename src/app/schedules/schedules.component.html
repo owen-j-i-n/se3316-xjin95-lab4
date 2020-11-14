@@ -14,16 +14,7 @@
 <br>
     
 
-    <div *ngIf="selectedSchedule">
-    
-        <h2>{{selectedSchedule.name | uppercase}} Courses</h2>
-        <div>
-            <li *ngFor = "let courses of selectedSchedule.courses | slice:1">
-                 {{courses.subject}} {{courses.catalog_nbr}} 
-                 <button  (click)="deleteCourse(courses.catalog_nbr,courses.subject)">DELETE</button>
-            </li>
-        
-        </div>
+   
     
         <form>
             <input #subject type="text" name = "subject" placeholder="Subject"> 
