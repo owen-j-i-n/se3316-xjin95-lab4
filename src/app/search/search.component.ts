@@ -1,4 +1,9 @@
-
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/task.service';
+import { searchResult } from '../searchResult'
+import{ ResultList } from '../searchList';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-search',
