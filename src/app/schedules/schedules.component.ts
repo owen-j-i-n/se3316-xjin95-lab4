@@ -54,6 +54,14 @@ export class SchedulesComponent implements OnInit {
     })
     
   }
+    deleteCourse(catalog_nbr:string, subject:string){
+    console.log(catalog_nbr,subject)
+      for(var i=0; i<this.selectedSchedule.courses.length; i++){
+        if(this.selectedSchedule.courses[i].catalog_nbr === catalog_nbr && this.selectedSchedule.courses[i].subject === subject){
+          this.selectedSchedule.courses.splice(i,1)
+        }
+      }
+  }
 
 
 }
