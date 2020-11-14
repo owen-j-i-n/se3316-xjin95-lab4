@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(){
   }
-
+//to inplement the search result in to the html
   getList(catalog_nbr, subject, ssr_component){
     let list = document.createElement("div");
     let info =  document.createElement("p"); 
@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
    while(div.firstChild){div.removeChild(div.firstChild);}
     console.log(catalog_nbr,subject,SSR)
 
-    this.taskService.makeSearch(catalog_nbr,subject,SSR).subscribe((finalList: any)=>{
+    this.taskService.makeSearch(catalog_nbr,subject,SSR).subscribe((finalList: any)=>{//from lab3API
 
       for(var i=0; i<finalList.length; i++){
 
