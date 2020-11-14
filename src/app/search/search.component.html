@@ -146,14 +146,4 @@
         <option value="WRITING"> Writing </option>
     </select>
     <input #catalog_nbr placeholder="coursecode" id="catalog_nbr" name = "search_code"/>
-    <select #SSR class="ssr" name="SSR" id="inputSSR">
-        <option value="">Option</option>
-        <option value="LEC">Lecture</option>
-        <option value="TUT">Tutorial</option>
-        <option value="LAB">Laboratory</option>
-    </select>
-    <button id = 'get_search' (click)="makeSearch(catalog_nbr.value, subject.value, SSR.value)">Search</button>
-    <br>
-    <div id="resultList"></div>
-</form>
-
+    
