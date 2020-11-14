@@ -1,0 +1,52 @@
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/task.service';
+import { searchResult } from '../searchResult'
+import{ ResultList } from '../searchList';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+
+@Component({
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
+})
+export class SearchComponent implements OnInit {
+
+  list
+  
+  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) { }
+
+  ngOnInit(){
+  }
+
+  getList(catalog_nbr, subject, ssr_component){
+    let list = document.createElement("div");
+    let info =  document.createElement("p"); 
+    let course_info = document.createTextNode(subject+" " +catalog_nbr +" "+  ssr_component);
+    info.appendChild(course_info);
+    list.appendChild(info);
+    return list; 
+  }
+
+  makeSearch(catalog_nbr:string, subject:string, SSR:string){
+   var result = []
+   var div = document.getElementById("resultList")
+   while(div.firstChild){div.removeChild(div.firstChild);}
+    console.log(catalog_nbr,subject,SSR)
+
+    this.taskService.makeSearch(catalog_nbr,subject,SSR).subscribe((finalList: any)=>{
+
+      for(var i=0; i<finalList.length; i++){
+
+        result[i]={
+            catalog_nbr: finalList[i].catalog_nbr,
+            subject: finalList[i].subject,
+            ssr_component: finalList[i].ssr_component
+        }
+        document.getElementById("resultList").appendChild(this.getList(finalList[i].catalog_nbr,finalList[i].subject,finalList[i].ssr_component))
+    }
+    })
+    console.log(result)
+  }
+
+}
