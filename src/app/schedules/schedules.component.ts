@@ -17,7 +17,7 @@ export class SchedulesComponent implements OnInit {
   ngOnInit(){
   }
 
-  onSelect(schedule: Schedule): void{
+  onSelect(schedule: Schedule): void{//to know which schedule was choosen
     this.selectedSchedule = schedule;
   }
   
@@ -37,12 +37,13 @@ export class SchedulesComponent implements OnInit {
     if(!sch){//only when this schedule already exists, sch has a value
     SCHEDULES.push({//create new schedule by push in
         name : name,
-        courses: [{catalog_nbr:"",subject:""}]
+        courses: [{catalog_nbr:"",subject:""}]//has to put the courses because of set interface
     })
     }
     else{alert("Schedule exist")}//when sch has data, means schedule exist
   }
 
+  //use lab3 api
   addCourse(catalog_nbr:string, subject:string){
     console.log(this.selectedSchedule, catalog_nbr, subject)
     this.taskService.checkCourse(catalog_nbr,subject).subscribe((finalResult: any)=>{
